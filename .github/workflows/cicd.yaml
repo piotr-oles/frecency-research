@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build project
-        run: yarn build
+        run: yarn build --base=/frecency-research/
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
