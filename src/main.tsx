@@ -29,7 +29,7 @@ function getCurrentPage() {
                 <ul>
                     {Object.keys(pages).map((page) => (
                         <li key={page}>
-                            <a href={`/?page=${encodeURIComponent(page)}`}>{page}</a>
+                            <a href={`?page=${encodeURIComponent(page)}`}>{page}</a>
                         </li>
                     ))}
                 </ul>
