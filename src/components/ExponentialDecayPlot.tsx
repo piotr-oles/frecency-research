@@ -1,12 +1,11 @@
-
-import { Plot, Theme } from 'mafs';
-import { DecayFunction } from '../types';
+import { Plot, Theme } from "mafs";
+import { DecayFunction } from "../types";
 
 export interface ExponentialDecayPlotProps {
-    decayFunction: DecayFunction;
+  decayFunction: DecayFunction;
 }
 export const ExponentialDecayPlot = ({
-                                         decayFunction,
-                                     }: ExponentialDecayPlotProps) => {
-    return <Plot.OfX y={decayFunction} color={Theme.blue} />;
+  decayFunction,
+}: ExponentialDecayPlotProps) => {
+  return <Plot.OfX y={decayFunction} color={Theme.blue} />;
 };

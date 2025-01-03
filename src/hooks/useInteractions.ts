@@ -1,15 +1,15 @@
-import { Interaction } from '../types.ts';
+import { Interaction } from "../types.ts";
 
 interface UseInteractionsParams {
-    x?: number;
-    interactions: Interaction[];
+  x?: number;
+  interactions: Interaction[];
 }
 export const useInteractions = ({
-                                    x = 0,
-                                    interactions,
-                                }: UseInteractionsParams) => {
-    return interactions.map((interaction) => ({
-        x: x + interaction.x,
-        weight: interaction.weight,
-    }));
+  x = 0,
+  interactions,
+}: UseInteractionsParams) => {
+  return interactions.map((interaction) => ({
+    x: x + interaction.x,
+    weight: interaction.weight,
+  }));
 };

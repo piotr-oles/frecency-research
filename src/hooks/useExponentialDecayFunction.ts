@@ -1,15 +1,15 @@
-import { useCallback } from 'react';
-import { DecayFunction } from '../types.ts';
+import { useCallback } from "react";
+import { DecayFunction } from "../types.ts";
 
 interface UseExponentialDecayFunctionParams {
-    halfLife: number;
+  halfLife: number;
 }
 
 export const useExponentialDecayFunction = ({
-                                                halfLife,
-                                            }: UseExponentialDecayFunctionParams): DecayFunction => {
-    return useCallback(
-        (x: number) => Math.exp(-x * (Math.LN2 / Math.abs(halfLife))),
-        [halfLife]
-    );
+  halfLife,
+}: UseExponentialDecayFunctionParams): DecayFunction => {
+  return useCallback(
+    (x: number) => Math.exp(-x * (Math.LN2 / Math.abs(halfLife))),
+    [halfLife],
+  );
 };
