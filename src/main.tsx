@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { TimeBucket } from "./pages/TimeBucket.tsx";
 import { ExponentialDecay } from "./pages/ExponentialDecay.tsx";
+import { ScoreDecay } from "./pages/ScoreDecay.tsx";
 
 const pages: Record<string, React.ReactNode> = {
   "time-bucket": <TimeBucket />,
@@ -15,6 +16,7 @@ const pages: Record<string, React.ReactNode> = {
   "exponential-decay-with-mapped-value": (
     <ExponentialDecay hasHalfLifePoint hasInteractions hasMappedScore />
   ),
+  "score-decay": <ScoreDecay />,
 };
 
 function getCurrentPage() {
