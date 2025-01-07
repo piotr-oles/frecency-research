@@ -5,15 +5,16 @@ interface InteractionVectorProps {
   interaction: Interaction;
   decayFunction: DecayFunction;
   now?: number;
+  color?: string;
 }
 
 export const InteractionVector = ({
   interaction,
   decayFunction,
   now = 0,
+  color = Theme.foreground,
 }: InteractionVectorProps) => {
   const x = now - interaction.x;
-  const color = x < 0 ? Theme.pink : Theme.foreground;
   return (
     <>
       <Vector tail={[x, 0]} tip={[x, interaction.weight]} color="#555" />

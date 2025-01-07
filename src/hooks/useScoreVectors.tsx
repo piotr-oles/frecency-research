@@ -8,6 +8,8 @@ interface UseScoreVectorsParams {
   interactions: Interaction[];
   decayFunction: DecayFunction;
   timeFunction?: TimeFunction;
+  color?: string;
+  label?: string;
 }
 
 export const useScoreVectors = ({
@@ -15,6 +17,8 @@ export const useScoreVectors = ({
   interactions,
   decayFunction,
   timeFunction,
+  color = Theme.green,
+  label = "score",
 }: UseScoreVectorsParams) => {
   const score = useScore({ now, interactions, decayFunction });
   const x = timeFunction ? timeFunction(score) : 0;
@@ -30,20 +34,21 @@ export const useScoreVectors = ({
 
       return [...vectors, [tail, tip] as [vec.Vector2, vec.Vector2]];
     },
-    [] as [vec.Vector2, vec.Vector2][],
+    [] as [vec.Vector2, vec.Vector2][]
   );
 
   const element = (
     <>
       {vectors.map(([tail, tip], index) => (
-        <Vector key={index} tail={tail} tip={tip} color={Theme.green} />
+        <Vector key={index} tail={tail} tip={tip} color={color} />
       ))}
-      <ScorePoint x={x} y={score} />
+      <ScorePoint x={x} y={score} color={color} label={label} />
     </>
   );
 
   return {
     vectors,
     element,
+    score,
   };
 };

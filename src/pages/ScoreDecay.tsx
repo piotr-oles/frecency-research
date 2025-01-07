@@ -3,12 +3,10 @@ import { AgeAndScoreCoordinates } from "../components/AgeAndScoreCoordinates";
 import { ExponentialDecayPlot } from "../components/ExponentialDecayPlot";
 import { useExponentialDecayFunction } from "../hooks/useExponentialDecayFunction";
 import { useEffect } from "react";
+import { lerp } from "../functions/lerp";
 
 function easeOutExpo(x: number): number {
   return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-}
-function lerp(x: number, y: number, a: number) {
-  return x * (1 - a) + y * a;
 }
 
 interface Stage {

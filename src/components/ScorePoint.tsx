@@ -1,24 +1,26 @@
-import { Point, Text, Theme } from "mafs";
+import { LaTeX, Point, Theme } from "mafs";
 
 interface ScorePointProps {
   x?: number;
   y: number;
+  color?: string;
+  label?: string;
 }
 
-export const ScorePoint = ({ x = 0, y }: ScorePointProps) => {
+export const ScorePoint = ({
+  x = 0,
+  y,
+  color = Theme.green,
+  label = `score`,
+}: ScorePointProps) => {
   return (
     <>
-      <Point x={x} y={y} color={Theme.green} />
-      <Text
-        x={x}
-        y={y}
-        color={Theme.green}
-        size={20}
-        attach="e"
-        attachDistance={20}
-      >
-        score = {y.toFixed(4)}
-      </Text>
+      <Point x={x} y={y} color={color} />
+      <LaTeX
+        at={[x, y + 0.5]}
+        color={color}
+        tex={`${label} = ${y.toFixed(4)}`}
+      />
     </>
   );
 };

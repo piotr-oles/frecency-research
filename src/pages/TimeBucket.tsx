@@ -5,7 +5,7 @@ import { useTimeBucketDecayFunction } from "../hooks/useTimeBucketDecayFunction"
 
 import { InteractionVector } from "../components/InteractionVector";
 import { ScorePoint } from "../components/ScorePoint";
-import { useNowRange } from "../hooks/useNowRange";
+import { useTimeRange } from "../hooks/useTimeRange";
 import { useCountRange } from "../hooks/useCountRange";
 
 interface TimeBucketPropd {
@@ -18,8 +18,8 @@ const avg = (numbers: number[]) =>
 export const TimeBucket = ({ hasInteractions = false }: TimeBucketPropd) => {
   const timeBucketDecayFunction = useTimeBucketDecayFunction();
 
-  const nowRange = useNowRange(4);
-  const countRange = useCountRange(6);
+  const nowRange = useTimeRange({ initialTime: 4, label: "now", row: 0 });
+  const countRange = useCountRange({ initialCount: 6, row: 1 });
   const interactions = [
     { x: 0, weight: 1 },
     { x: 2, weight: 2 },
@@ -32,8 +32,8 @@ export const TimeBucket = ({ hasInteractions = false }: TimeBucketPropd) => {
       interactions.map(
         (interaction) =>
           timeBucketDecayFunction(nowRange.value - interaction.x) *
-          interaction.weight,
-      ),
+          interaction.weight
+      )
     );
 
   return (

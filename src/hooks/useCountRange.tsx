@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { RangeInput } from "../components/RangeInput.tsx";
 
-export const useCountRange = (initialCount = 6) => {
+interface UseCountRangeParams {
+  initialCount: number;
+  row: number;
+}
+
+export const useCountRange = ({ initialCount, row }: UseCountRangeParams) => {
   const [count, setCount] = useState(initialCount);
 
   return {
@@ -11,7 +16,7 @@ export const useCountRange = (initialCount = 6) => {
         label="count ="
         labelWidth={60}
         description={`${count.toFixed(0)}`}
-        top={30}
+        top={row * 30}
         left={0}
         value={count}
         onChange={setCount}

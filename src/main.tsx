@@ -16,6 +16,14 @@ const pages: Record<string, React.ReactNode> = {
   "exponential-decay-with-mapped-value": (
     <ExponentialDecay hasHalfLifePoint hasInteractions hasMappedScore />
   ),
+  "exponential-decay-with-origin": (
+    <ExponentialDecay
+      hasHalfLifePoint
+      hasInteractions
+      hasMappedScore
+      hasOrigin
+    />
+  ),
   "score-decay": <ScoreDecay />,
 };
 
