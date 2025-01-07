@@ -56,13 +56,13 @@ export const ScoreDecay = () => {
   const s0Point = (
     <>
       <Point x={score0.x} y={score0.y} />
-      <LaTeX tex="s_{0}" at={[score0.x, score0.y + 0.5]} />
+      <LaTeX tex="y_{0}" at={[score0.x, score0.y + 0.5]} />
     </>
   );
   const s1Point = (
     <>
       <Point x={score1.x} y={score1.y} />
-      <LaTeX tex="s_{1}" at={[score1.x, score1.y + 0.5]} />
+      <LaTeX tex="y_{1}" at={[score1.x, score1.y + 0.5]} />
     </>
   );
   const t0Point = (
@@ -93,7 +93,7 @@ export const ScoreDecay = () => {
               color={Theme.green}
             />
             <LaTeX
-              tex="t_{0} = time(s_{0})"
+              tex="t_{0} = time(y_{0})"
               at={[score0.x - 1.5, lerp(score0.y, 0, 0.5)]}
             />
           </>
@@ -126,7 +126,7 @@ export const ScoreDecay = () => {
               color={Theme.green}
             />
             <LaTeX
-              tex="s_{1} = score(t_{1})"
+              tex="y_{1} = score(t_{1})"
               at={[score1.x - 1.5, lerp(0, score1.y, 0.5)]}
             />
           </>
