@@ -1,6 +1,7 @@
 export interface Interaction {
   x: number;
   weight: number;
+  label?: string;
 }
 
 export type DecayFunction = (x: number) => number;

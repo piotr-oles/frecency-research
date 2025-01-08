@@ -1,4 +1,4 @@
-import { LaTeX, Line, Mafs, Theme } from "mafs";
+import { LaTeX, Line, Mafs, Theme, vec } from "mafs";
 import { ExponentialDecayPlot } from "../components/ExponentialDecayPlot";
 import { useHalfLifePoint } from "../hooks/useHalfLifePoint";
 import { useExponentialDecayFunction } from "../hooks/useExponentialDecayFunction";
@@ -8,6 +8,7 @@ import { InteractionVector } from "../components/InteractionVector";
 import { useScoreVectors } from "../hooks/useScoreVectors";
 import { useExponentialTimeFunction } from "../hooks/useExponentialTimeFunction";
 import { lerp } from "../functions/lerp";
+import { useMemo } from "react";
 
 interface ExponentialDecayProps {
   hasHalfLifePoint?: boolean;
@@ -34,9 +35,9 @@ export const ExponentialDecay = ({
   const nowRange = useTimeRange({ initialTime: 4, label: "now", row: 0 });
   const originRange = useTimeRange({ initialTime: 0, label: "origin", row: 1 });
   const interactions = [
-    { x: 0, weight: 1 },
-    { x: 2, weight: 2 },
-    { x: 3, weight: 2 },
+    { x: 0, weight: 1, label: "i_{1}" },
+    { x: 2, weight: 2, label: "i_{2}" },
+    { x: 3, weight: 2, label: "i_{3}" },
   ].filter((interaction) => interaction.x <= nowRange.value);
   const scoreNowVectors = useScoreVectors({
     now: nowRange.value,
@@ -56,16 +57,24 @@ export const ExponentialDecay = ({
   const scoreNowTime = exponentialTimeFunction(scoreNowVectors.score);
   const scoreOriginTime = exponentialTimeFunction(scoreOriginVectors.score);
 
+  const viewBox = useMemo<{
+    x?: vec.Vector2;
+    y?: vec.Vector2;
+    padding?: number;
+  }>(() => {
+    switch (true) {
+      case hasOrigin:
+        return { x: [-10, 4], y: [-1, 9] };
+      case hasMappedScore:
+        return { x: [-7, 7], y: [-1, 7] };
+      default:
+        return { x: [0, 9], y: [-1, 7] };
+    }
+  }, [hasOrigin, hasMappedScore]);
+
   return (
     <>
-      <Mafs
-        viewBox={{
-          x: hasOrigin ? [-10, 4] : hasMappedScore ? [-7, 7] : [0, 9],
-          y: hasOrigin ? [-1, 9] : [-1, 7],
-        }}
-        width="auto"
-        height={hasOrigin ? 700 : 500}
-      >
+      <Mafs viewBox={viewBox} width="auto" height={hasOrigin ? 700 : 500}>
         <AgeAndScoreCoordinates />
         <ExponentialDecayPlot decayFunction={exponentialDecayFunction} />
         {hasOrigin && Math.abs(scoreNowTime - scoreOriginTime) > 0 && (

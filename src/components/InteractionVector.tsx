@@ -1,5 +1,5 @@
 import { DecayFunction, Interaction } from "../types";
-import { Point, Vector, Theme } from "mafs";
+import { Point, Vector, Theme, LaTeX } from "mafs";
 
 interface InteractionVectorProps {
   interaction: Interaction;
@@ -24,6 +24,13 @@ export const InteractionVector = ({
         color={color}
       />
       <Point x={x} y={decayFunction(x)} color={color} />
+      {interaction.label && (
+        <LaTeX
+          at={[x, interaction.weight * decayFunction(x) + 0.5]}
+          tex={interaction.label}
+          color={color}
+        />
+      )}
     </>
   );
 };

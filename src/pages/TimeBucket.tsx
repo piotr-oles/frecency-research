@@ -21,9 +21,9 @@ export const TimeBucket = ({ hasInteractions = false }: TimeBucketPropd) => {
   const nowRange = useTimeRange({ initialTime: 4, label: "now", row: 0 });
   const countRange = useCountRange({ initialCount: 6, row: 1 });
   const interactions = [
-    { x: 0, weight: 1 },
-    { x: 2, weight: 2 },
-    { x: 3, weight: 2 },
+    { x: 0, weight: 1, label: "i_{1}" },
+    { x: 2, weight: 2, label: "i_{2}" },
+    { x: 3, weight: 2, label: "i_{3}" },
   ].filter((interaction) => interaction.x <= nowRange.value);
 
   const score =
