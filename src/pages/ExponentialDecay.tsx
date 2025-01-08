@@ -4,7 +4,6 @@ import { useHalfLifePoint } from "../hooks/useHalfLifePoint";
 import { useExponentialDecayFunction } from "../hooks/useExponentialDecayFunction";
 import { AgeAndScoreCoordinates } from "../components/AgeAndScoreCoordinates";
 import { useTimeRange } from "../hooks/useTimeRange";
-import { InteractionVector } from "../components/InteractionVector";
 import { useScoreVectors } from "../hooks/useScoreVectors";
 import { useExponentialTimeFunction } from "../hooks/useExponentialTimeFunction";
 import { lerp } from "../functions/lerp";
@@ -94,30 +93,7 @@ export const ExponentialDecay = ({
           </>
         )}
         {hasHalfLifePoint && halfLifePoint.element}
-        {hasInteractions ? (
-          <>
-            {interactions.map((interaction, index) => (
-              <InteractionVector
-                key={index}
-                now={nowRange.value}
-                interaction={interaction}
-                decayFunction={exponentialDecayFunction}
-                color={hasOrigin ? Theme.green : Theme.foreground}
-              />
-            ))}
-            {hasOrigin &&
-              interactions.map((interaction, index) => (
-                <InteractionVector
-                  key={index}
-                  now={originRange.value}
-                  interaction={interaction}
-                  decayFunction={exponentialDecayFunction}
-                  color={Theme.yellow}
-                />
-              ))}
-            {scoreNowVectors.element}
-          </>
-        ) : null}
+        {hasInteractions && scoreNowVectors.element}
         {hasOrigin && scoreOriginVectors.element}
       </Mafs>
       {hasInteractions && nowRange.element}

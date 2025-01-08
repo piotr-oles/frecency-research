@@ -1,4 +1,4 @@
-import { LaTeX, Point, Theme } from "mafs";
+import { LaTeX, Point } from "mafs";
 
 interface ScorePointProps {
   x?: number;
@@ -10,7 +10,7 @@ interface ScorePointProps {
 export const ScorePoint = ({
   x = 0,
   y,
-  color = Theme.green,
+  color,
   label = `score`,
 }: ScorePointProps) => {
   return (
